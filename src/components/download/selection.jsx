@@ -17,6 +17,7 @@ const DEFAULT_DE = {
 const DownloadSelection = () => {
   const [selectedPlatform, setSelectedPlatform] = useState("generic");
   const [selectedDEs, setSelectedDEs] = useState({});
+  const [tooltipText, setTooltipText] = useState("Copy to clipboard");
   const contents = PLATFORM_MAP[selectedPlatform];
 
   const handleDEChange = (index, de) => {
@@ -129,21 +130,14 @@ const DownloadSelection = () => {
                   className="tooltiptext"
                   id={`${content.title}-${selectedDE}`}
                 >
-                  Copy to clipboard
+                  {tooltipText}
                 </span>
                 <button
                   className="my-4 hover:scale-105 transition-all bg-site-100 p-1 rounded-[0.65em] text-white text-sm px-2 py-1 shadow-md"
-                  onClick={() => {
-                    navigator.clipboard.writeText(details.shasum);
-                    document.getElementById(
-                      `${content.title}-${selectedDE}`
-                    ).innerHTML = "Copied to clipboard!";
-                  }}
-                  onMouseOut={() => {
-                    document.getElementById(
-                      `${content.title}-${selectedDE}`
-                    ).innerHTML = "Copy to clipboard";
-                  }}
+                  onClick={() => navigator.clipboard.writeText(details.shasum).then(
+                    () => setTooltipText("Copied to clipboard!")
+                  )}
+                  onMouseOut={() => setTooltipText("Copy to clipboard")}
                 >
                   sha256sum
                 </button>
