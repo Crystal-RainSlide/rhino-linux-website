@@ -93,10 +93,10 @@ const DownloadSelection = () => {
                 </p>
                 <p>
                   <a
+                    className="text-rhino-purple underline"
                     href={details.sourceCode}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-rhino-purple underline"
                   >
                     Source Code
                   </a>
@@ -113,15 +113,16 @@ const DownloadSelection = () => {
                 </div>
               )}
 
-              <button className="mt-4 hover:scale-105 transition-all bg-rhino-purple rounded-[0.65em] text-white text-xl px-4 py-2 shadow-md mr-2">
-                <a
-                  href={details.downloadMirror}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+              <a
+                classname="inline-block mt-4"
+                href={details.downloadMirror}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="mr-2 hover:scale-105 transition-all bg-rhino-purple rounded-[0.65em] text-white text-xl px-4 py-2 shadow-md">
                   Download
-                </a>
-              </button>
+                </button>
+              </a>
 
               <div className="tooltip inline-block">
                 <span
@@ -131,6 +132,7 @@ const DownloadSelection = () => {
                   Copy to clipboard
                 </span>
                 <button
+                  className="my-4 hover:scale-105 transition-all bg-site-100 p-1 rounded-[0.65em] text-white text-sm px-2 py-1 shadow-md"
                   onClick={() => {
                     navigator.clipboard.writeText(details.shasum);
                     document.getElementById(
@@ -142,7 +144,6 @@ const DownloadSelection = () => {
                       `${content.title}-${selectedDE}`
                     ).innerHTML = "Copy to clipboard";
                   }}
-                  className="my-4 hover:scale-105 transition-all bg-site-100 p-1 rounded-[0.65em] text-white text-sm px-2 py-1 shadow-md"
                 >
                   sha256sum
                 </button>
